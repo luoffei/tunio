@@ -45,15 +45,19 @@ impl<Q: FdQueueT> InterfaceT for UtunInterface<Q> {
     }
 
     fn up(&mut self) -> Result<(), Error> {
-        Ok(self.handle().set_flags(
-            (libc::IFF_POINTOPOINT | libc::IFF_MULTICAST | libc::IFF_UP | libc::IFF_RUNNING) as _,
-        )?)
+        self.handle().set_flags(
+            (InterfaceFlags::IFF_POINTOPOINT
+                | InterfaceFlags::IFF_MULTICAST
+                | InterfaceFlags::IFF_UP
+                | InterfaceFlags::IFF_RUNNING) as _,
+        )?;
+        Ok(())
     }
 
     fn down(&mut self) -> Result<(), Error> {
-        Ok(self
-            .handle()
-            .set_flags((libc::IFF_POINTOPOINT | libc::IFF_MULTICAST) as _)?)
+        self.handle()
+            .set_flags((InterfaceFlags::IFF_POINTOPOINT | InterfaceFlags::IFF_MULTICAST) as _)?;
+        Ok(())
     }
 
     fn handle(&self) -> netconfig::Interface {
