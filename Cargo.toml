@@ -61,7 +61,7 @@ rust-version = "1.64"
 
 [workspace.dependencies]
 log = "0.4.17"
-netconfig = "0.4.0"
+netconfig = { git = "https://github.com/luoffei/netconfig.git"}
 futures = "0.3.21"
 derive_builder = "0.11.2"
 delegate = "0.8.0"
