@@ -3,6 +3,7 @@ use crate::{Driver, PlatformIfConfig};
 use delegate::delegate;
 use futures::{AsyncRead, AsyncWrite};
 use netconfig::sys::InterfaceExt;
+use nix::net::if_::InterfaceFlags;
 use std::io::{self, Read, Write};
 use std::pin::Pin;
 use std::task::{Context, Poll};
